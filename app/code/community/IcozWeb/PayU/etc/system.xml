@@ -1,0 +1,657 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <icozweb_payu module="icozweb_payu" translate="label">
+                    <label>PayU - General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>14000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <sandbox translate="label comment">
+                            <label>Test Environtment?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[On test mode the default credentials from the PayU Sandbox are used.]]></comment>
+                        </sandbox>
+                        <load_jquery translate="label comment">
+                            <label>Load jQuery library?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[For proper module functioning, a jQuery library must be loaded. If your store already loads the library, mark this option as "No".]]></comment>
+                        </load_jquery>
+                        <merchant_id translate="label">
+                            <label>Merchant ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </merchant_id>
+                        <account_id_ar translate="label">
+                            <label>Account ID - Argentina</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </account_id_ar>
+                        <account_id_br translate="label">
+                            <label>Account ID - Brazil</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </account_id_br>
+                        <account_id_co translate="label">
+                            <label>Account ID - Colombia</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </account_id_co>
+                        <account_id_mx translate="label">
+                            <label>Account ID - Mexico</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </account_id_mx>
+                        <account_id_pa translate="label">
+                            <label>Account ID - Panama</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </account_id_pa>
+                        <account_id_pe translate="label">
+                            <label>Account ID - Peru</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </account_id_pe>
+                        <api_login translate="label comment">
+                            <label>API Login</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>27</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Can be found on the dashboard of your PayU account, in "Configuration >> Technical Information".]]></comment>
+                        </api_login>
+                        <api_key translate="label comment">
+                            <label>API Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>28</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Can be found on the dashboard of your PayU account, in "Configuration >> Technical Information".]]></comment>
+                        </api_key>
+                        <public_key translate="label comment">
+                            <label>Public Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>29</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Can be found on the dashboard of your PayU account, in "Configuration >> Technical Information".]]></comment>
+                        </public_key>
+                        <callback_validation>
+                            <label>Callback Validation</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </callback_validation>
+                        <dispute_notification translate="label comment">
+                            <label>Dispute Notification URL</label>
+                            <frontend_model>icozweb_payu/adminhtml_system_config_form_fieldset_header</frontend_model>
+                            <sort_order>31</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[To configure dispute notifications, the URL above must be inserted into your PayU account dashboard, in "Configuration >> Account configurations" on the "Dispute notification URL" field (after selecting your account). You also need to check the "Enable dispute notification" field.]]></comment>
+                        </dispute_notification>
+                        <debug translate="label comment">
+                            <label>Debug</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Will write the log to var/log/payu.log.</comment>
+                        </debug>
+                        <send_invoice_email translate="label">
+                            <label>Send invoice email once payment is confirmed?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </send_invoice_email>
+                        <customer_cpf_attribute translate="label">
+                            <label>Customer "Taxvat" field</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_attributes</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_cpf_attribute>
+                        <customer_cnpj_attribute translate="label">
+                            <label>Customer "TIN" field</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_attributes</source_model>
+                            <sort_order>51</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_cnpj_attribute>
+                        <customer_company_name_attribute translate="label">
+                            <label>Customer "Company Name" field</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_attributes</source_model>
+                            <sort_order>52</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customer_company_name_attribute>
+                        <address_street_attribute translate="label">
+                            <label>Address "Street" field</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_address_attributes</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </address_street_attribute>
+                        <address_number_attribute translate="label">
+                            <label>Address "Number" field</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_address_attributes</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </address_number_attribute>
+                        <address_complement_attribute translate="label">
+                            <label>Address "Complement" field</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_address_attributes</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </address_complement_attribute>
+                    </fields>
+                </icozweb_payu>
+                <icozweb_payu_cc module="icozweb_payu" translate="label">
+                    <label>PayU - Credit Card</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>14010</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </title>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_order_status</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </sort_order>
+                        <group_restriction translate="label">
+                            <label>Enable restriction by customer groups</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>90</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </group_restriction>
+                        <customer_groups translate="label">
+                            <label>Allowed groups</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_groups</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <group_restriction>1</group_restriction>
+                            </depends>
+                        </customer_groups>
+                    </fields>
+                </icozweb_payu_cc>
+                <icozweb_payu_boleto module="icozweb_payu" translate="label">
+                    <label>PayU - Brazil - Bank Slip</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>14020</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </title>
+                        <expiration translate="label">
+                            <label>Expiration (days)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_expiration</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </expiration>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_order_status</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </sort_order>
+                        <group_restriction translate="label">
+                            <label>Enable restriction by customer groups</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </group_restriction>
+                        <customer_groups translate="label">
+                            <label>Allowed groups</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_groups</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <group_restriction>1</group_restriction>
+                            </depends>
+                        </customer_groups>
+                    </fields>
+                </icozweb_payu_boleto>
+                <icozweb_payu_cash_argentina module="icozweb_payu" translate="label">
+                    <label>PayU - Argentina - Cash</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>14030</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </title>
+                        <methods translate="label comment">
+                            <label>Available Methods</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_cash_argentina_methods</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Payment services which will be shown on the store.</comment>
+                        </methods>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_order_status</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </sort_order>
+                        <group_restriction translate="label">
+                            <label>Enable restriction by customer groups</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </group_restriction>
+                        <customer_groups translate="label">
+                            <label>Allowed groups</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_groups</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <group_restriction>1</group_restriction>
+                            </depends>
+                        </customer_groups>
+                    </fields>
+                </icozweb_payu_cash_argentina>
+                <icozweb_payu_cash_colombia module="icozweb_payu" translate="label">
+                    <label>PayU - Colombia - Cash</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>14040</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </title>
+                        <methods translate="label comment">
+                            <label>Available Methods</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_cash_colombia_methods</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Payment services which will be shown on the store.</comment>
+                        </methods>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_order_status</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </sort_order>
+                        <group_restriction translate="label">
+                            <label>Enable restriction by customer groups</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </group_restriction>
+                        <customer_groups translate="label">
+                            <label>Allowed groups</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_groups</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <group_restriction>1</group_restriction>
+                            </depends>
+                        </customer_groups>
+                    </fields>
+                </icozweb_payu_cash_colombia>
+                <icozweb_payu_cash_mexico module="icozweb_payu" translate="label">
+                    <label>PayU - Mexico - Cash</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>14050</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </title>
+                        <methods translate="label comment">
+                            <label>Available Methods</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_cash_mexico_methods</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Payment services which will be shown on the store.</comment>
+                        </methods>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_order_status</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </sort_order>
+                        <group_restriction translate="label">
+                            <label>Enable restriction by customer groups</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </group_restriction>
+                        <customer_groups translate="label">
+                            <label>Allowed groups</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_groups</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <group_restriction>1</group_restriction>
+                            </depends>
+                        </customer_groups>
+                    </fields>
+                </icozweb_payu_cash_mexico>
+                <icozweb_payu_cash_peru module="icozweb_payu" translate="label">
+                    <label>PayU - Peru - Cash</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>14060</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </title>
+                        <methods translate="label comment">
+                            <label>Available Methods</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_cash_peru_methods</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Payment services which will be shown on the store.</comment>
+                        </methods>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_order_status</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </sort_order>
+                        <group_restriction translate="label">
+                            <label>Enable restriction by customer groups</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </group_restriction>
+                        <customer_groups translate="label">
+                            <label>Allowed groups</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>icozweb_payu/system_config_source_customer_groups</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <group_restriction>1</group_restriction>
+                            </depends>
+                        </customer_groups>
+                    </fields>
+                </icozweb_payu_cash_peru>
+            </groups>
+        </payment>
+    </sections>
+</config>

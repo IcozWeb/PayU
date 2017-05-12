@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="1.0.0">
+    <checkout_onepage_success>
+        <reference name="content">
+            <block name="icozweb.payu.paymentinfo" type="icozweb_payu/payment_info" template="icozweb/payu/payment/info.phtml" before="checkout.success"/>
+        </reference>
+    </checkout_onepage_success>
+</layout>

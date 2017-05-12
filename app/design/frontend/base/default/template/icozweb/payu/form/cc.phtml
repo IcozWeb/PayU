@@ -1,0 +1,180 @@
+<?php
+/**
+ * IcozWeb
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to support@icozweb.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * THIS  SOFTWARE  IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES,
+ * INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED  WARRANTIES  OF MERCHANTABILITY
+ * AND FITNESS  FOR A  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * REGENTS OR  CONTRIBUTORS  BE LIABLE  FOR ANY  DIRECT,  INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE, DATA, OR PROFITS;
+ * OR  BUSINESS  INTERRUPTION)  HOWEVER  CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER  IN CONTRACT,  STRICT LIABILITY,  OR TORT  (INCLUDING  NEGLIGENCE OR
+ * OTHERWISE)  ARISING  IN  ANY  WAY OUT OF  THE USE OF THIS SOFTWARE,  EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://icozweb.com or contact us directly at support@icozweb.com
+ * for more information.
+ *
+ * @copyright  Copyright (c) 2017 IcozWeb (http://icozweb.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php
+    /** @var IcozWeb_PayU_Block_Form_Cc $this */
+    $_code = $this->getMethodCode();
+    $quote = Mage::getSingleton('checkout/session')->getQuote();
+?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;padding-left:3%;">
+    <li>
+        <label for="<?php echo $_code ?>_cc_owner" class="required"><em>*</em><?php echo $this->__('Name as printed on card') ?></label>
+        <div class="input-box">
+            <input type="text" id="<?php echo $_code ?>_cc_owner" name="payment[payu_credit_card_owner]" title="<?php echo $this->__('Name as printed on card') ?>" class="input-text required-entry" value=""/>
+        </div>
+    </li>
+    <li id="<?php echo $_code ?>_cpf_div">
+        <label for="<?php echo $_code ?>_cpf" class="required"><em>*</em><?php echo $this->__('Card Holder Taxvat') ?></label>
+        <div class="input-box">
+            <?php $cpf = $quote->getCustomer()->getTaxvat(); ?>
+            <?php $cpf = !empty($cpf) ? $cpf : $quote->getData('customer_taxvat'); ?>
+            <input type="text" id="<?php echo $_code ?>_cpf" name="payment[payu_credit_card_cpf]" title="<?php echo $this->__('Card Holder Taxvat') ?>" class="input-text required-entry" value="<?php echo $cpf; ?>" maxlength="14"/>
+        </div>
+    </li>
+    <li id="<?php echo $_code ?>_phone_div">
+        <label for="<?php echo $_code ?>_phone" class="required"><em>*</em><?php echo $this->__('Card Holder Phone') ?></label>
+        <div class="input-box">
+            <?php $phone = $quote->getBillingAddress()->getTelephone(); ?>
+            <?php $phone = !empty($phone) ? $phone : $quote->getShippingAddress()->getTelephone(); ?>
+            <input type="text" id="<?php echo $_code ?>_phone" name="payment[payu_credit_card_phone]" title="<?php echo $this->__('Card Holder Phone') ?>" class="input-text required-entry" value="<?php echo $phone; ?>" />
+        </div>
+    </li>
+    <li id="<?php echo $_code ?>_dob_div">
+        <label for="<?php echo $_code ?>_dob" class="required"><em>*</em><?php echo $this->__('Card Holder Date of Birth') ?></label>
+        <div class="input-box">
+            <?php 
+                $dob = $quote->getCustomer()->getDob();
+                $dob = !empty($dob) ? $dob : $quote->getData('customer_dob');
+                if(!empty($dob)){
+                    $dobDate = DateTime::createFromFormat('Y-m-d H:i:s', $dob);
+                    $dobStamp = $dobDate->getTimestamp(); 
+                    $dobDate = new Zend_Date($dobStamp);
+                    $dob = $dobDate->toString(Mage::app()->getLocale()->getDateFormatWithLongYear()); 
+                }else{
+                    $dob = "";
+                }
+            ?>
+            <input type="text" id="<?php echo $_code ?>_dob" name="payment[payu_credit_card_dob]" title="<?php echo $this->__('Card Holder Date of Birth') ?>" class="input-text required-entry" value="<?php echo $dob; ?>" />
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cc_number" class="required"><em>*</em><?php echo $this->__('Credit Card Number') ?></label>
+        <div class="input-box">
+            <input type="text" id="<?php echo $_code ?>_cc_number" name="payment[payu_credit_card_number]" title="<?php echo $this->__('Credit Card Number') ?>" class="input-text required-entry" value="" maxlength="16"/>
+        </div>
+    </li>
+    <li style="display:none !important;">
+        <input id="<?php echo $_code ?>_credit_card_type" type="hidden" name="payment[payu_credit_card_type]" value="" />   
+    </li>
+    <li class="payu_expiration_container">
+        <label for="<?php echo $_code ?>_expiration" class="required"><em>*</em><?php echo $this->__('Expiration Date') ?></label>
+        <div>
+            <div class="input-box input-box-select">
+                <select id="<?php echo $_code ?>_expiration_month" name="payment[payu_cc_exp_month]" class="month validate-cc-exp required-entry">
+                    <option value=""><?php echo $this->__('Month') ?></option>
+                    <?php
+                        $creditCardExpirationMonth = $this->getInfoData('payu_cc_exp_month');
+                        for ($month = 1; $month <= 12; $month++) {
+                            if ($month == $creditCardExpirationMonth) {
+                                echo '<option value="' . $month . '" selected="selected">' . $month . '</option>';
+                            } else {
+                                echo '<option value="' . $month . '">' . $month . '</option>';
+                            }
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="input-box input-box-select">
+                <select id="<?php echo $_code ?>_expiration_yr" name="payment[payu_cc_exp_year]" class="year required-entry">
+                    <option value=""><?php echo $this->__('Year') ?></option>
+                    <?php
+                        $creditCardExpirationYear = $this->getInfoData('payu_cc_exp_year');
+                        $currentYear = (int)date('Y');
+                        for ($i = 0; $i <= 15; $i++) {
+                            $year = $currentYear + $i;
+                            if ($year == $creditCardExpirationYear) {
+                                echo '<option value="' . $year . '" selected="selected">' . $year . '</option>';
+                            } else {
+                                echo '<option value="' . $year . '">' . $year . '</option>';
+                            }
+                        }
+                    ?>
+                </select>
+            </div>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cc_cvv" class="required"><em>*</em><?php echo $this->__('Card Verification Number') ?></label>
+        <div class="input-box">
+            <div class="v-fix">
+                <input type="text" id="<?php echo $_code ?>_cc_cvv" name="payment[payu_credit_card_cvv]" title="<?php echo $this->__('Card Verification Number') ?>" class="input-text cvv cvv-what-is-this required-entry validate-cc-cvn validate-length minimum-length-3 maximum-length-4" value="" maxlength="4" minlength="3"/>
+            </div>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cc_installments"><?php echo $this->__('Installments') ?></label>
+        <div class="input-box">
+            <?php $installments = $this->getInstallments(); ?>
+            <?php if ($installments == ''): ?>
+            <select name="payment[payu_credit_card_installments]" id="<?php echo $_code ?>_cc_installments" class="required" disabled >
+                <option value=""><?php echo $this->__('-- Please, select --'); ?></option>
+            </select>
+            <?php else: ?>
+            <select name="payment[payu_credit_card_installments]" id="<?php echo $_code ?>_cc_installments" class="required">
+                <?php echo $this->getInstallments(); ?>
+            </select>
+            <?php endif; ?>
+        </div>
+    </li>
+    <li style="margin-bottom:60px;">
+        <div id="payu-card-image"></div>
+    </li>
+    <li style="display:none !important;">
+        <?php
+            $deviceSessionId = $this->getDeviceSessionId();
+            $usuarioId       = $this->getUsuarioId();
+        ?>
+        <p style="background:url(https://maf.pagosonline.net/ws/fp?id=<?php echo $deviceSessionId . $usuarioId; ?>)"></p>
+        <img src="https://maf.pagosonline.net/ws/fp/clear.png?id=<?php echo $deviceSessionId . $usuarioId; ?>">
+        <script src="https://maf.pagosonline.net/ws/fp/check.js?id=<?php echo $deviceSessionId . $usuarioId; ?>"></script>
+        <object type="application/x-shockwave-flash" data="https://maf.pagosonline.net/ws/fp/fp.swf?id=<?php echo $deviceSessionId . $usuarioId; ?>" width="1" height="1" id="thm_fp">
+            <param name="movie" value="https://maf.pagosonline.net/ws/fp/fp.swf?id=<?php echo $deviceSessionId . $usuarioId; ?>" />
+        </object>
+        <input id="<?php echo $_code ?>_device_session_id" type="hidden" class="required-entry" name="payment[payu_device_session_id]" value="<?php echo $deviceSessionId; ?>" />
+    </li>
+    <?php echo $this->getChildHtml(); ?>
+</ul>
+<script type="text/javascript">
+//<![CDATA[
+
+    if (typeof jQuery !== 'undefined' && typeof jQuery().mask !== 'undefined') {
+        jQuery("#<?php echo $_code ?>_cc_number").mask("0000000000000000");
+        jQuery("#<?php echo $_code ?>_cpf").mask("000.000.000-00");
+        jQuery("#<?php echo $_code ?>_dob").mask("00/00/0000");
+    }
+
+//]]
+</script>

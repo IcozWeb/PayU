@@ -1,0 +1,69 @@
+<?php
+/**
+ * IcozWeb
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to support@icozweb.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * THIS  SOFTWARE  IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES,
+ * INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED  WARRANTIES  OF MERCHANTABILITY
+ * AND FITNESS  FOR A  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * REGENTS OR  CONTRIBUTORS  BE LIABLE  FOR ANY  DIRECT,  INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE, DATA, OR PROFITS;
+ * OR  BUSINESS  INTERRUPTION)  HOWEVER  CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER  IN CONTRACT,  STRICT LIABILITY,  OR TORT  (INCLUDING  NEGLIGENCE OR
+ * OTHERWISE)  ARISING  IN  ANY  WAY OUT OF  THE USE OF THIS SOFTWARE,  EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://icozweb.com or contact us directly at support@icozweb.com
+ * for more information.
+ *
+ * @copyright  Copyright (c) 2017 IcozWeb (http://icozweb.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<strong><?php echo $this->escapeHtml($this->getMethod()->getTitle()) ?></strong>
+<?php $info = $this->getInfo(); ?>
+<?php if ($info && $additional = $info->getAdditionalInformation()): ?>
+    <br/>
+    <?php
+        $dataHelper        = Mage::helper('icozweb_payu');
+        $payUOrderId       = (isset($additional['payu_order_id'])) ? $this->escapeHtml($additional['payu_order_id']) : $dataHelper->__('Unknown');
+        $payUTransactionId = (isset($additional['payu_transaction_id'])) ? $this->escapeHtml($additional['payu_transaction_id']) : $dataHelper->__('Unknown');
+        $creditCardOwner   = (isset($additional['credit_card_owner'])) ? $this->escapeHtml($additional['credit_card_owner']) : $dataHelper->__('Unknown');
+        $creditCardTaxvat  = (isset($additional['credit_card_cpf'])) ? $this->escapeHtml($additional['credit_card_cpf']) : $dataHelper->__('Unknown');
+        $creditCardDob     = (isset($additional['credit_card_dob'])) ? $this->escapeHtml($additional['credit_card_dob']) : $dataHelper->__('Unknown');
+        $creditCardPhone   = (isset($additional['credit_card_phone'])) ? $this->escapeHtml($additional['credit_card_phone']) : $dataHelper->__('Unknown');
+        $installmentQty    = (isset($additional['installment_quantity'])) ? $this->escapeHtml($additional['installment_quantity']) : '?';
+        $installmentValue  = (isset($additional['installment_value'])) ? Mage::helper('core')->formatCurrency($additional['installment_value']) : '?';
+    ?>
+    <?php echo $dataHelper->__('PayU Order ID: %s', $payUOrderId); ?>
+    <br/>
+    <?php echo $dataHelper->__('PayU Transaction ID: %s', $payUTransactionId); ?>
+    <br/>
+    <?php echo $dataHelper->__('Credit Card Owner: %s', $creditCardOwner); ?>
+    <br/>
+    <?php echo $dataHelper->__("Owner's Taxvat: %s", $creditCardTaxvat); ?>
+    <br/>
+    <?php echo $dataHelper->__("Owner's DoB: %s", $creditCardDob); ?>
+    <br/>
+    <?php echo $dataHelper->__("Owner's Phone: %s", $creditCardPhone); ?>
+    <br/>
+    <?php echo $dataHelper->__("Credit Card Type: %s", ucfirst($this->escapeHtml($info->getCcType()))); ?>
+    <br/>
+    <?php echo $dataHelper->__("Last 4 digits: %s", $this->escapeHtml($info->getCcLast4())); ?>
+    <br/>
+    <?php echo $dataHelper->__("Installments: %sx %s", $installmentQty, $installmentValue); ?>
+<?php endif; ?>

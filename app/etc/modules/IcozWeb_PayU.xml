@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <IcozWeb_PayU>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Sales />
+                <Mage_Payment />
+            </depends>
+        </IcozWeb_PayU>
+    </modules>
+</config>

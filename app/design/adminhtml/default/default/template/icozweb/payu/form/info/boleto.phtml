@@ -1,0 +1,59 @@
+<?php
+/**
+ * IcozWeb
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to support@icozweb.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * THIS  SOFTWARE  IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES,
+ * INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED  WARRANTIES  OF MERCHANTABILITY
+ * AND FITNESS  FOR A  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * REGENTS OR  CONTRIBUTORS  BE LIABLE  FOR ANY  DIRECT,  INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE, DATA, OR PROFITS;
+ * OR  BUSINESS  INTERRUPTION)  HOWEVER  CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER  IN CONTRACT,  STRICT LIABILITY,  OR TORT  (INCLUDING  NEGLIGENCE OR
+ * OTHERWISE)  ARISING  IN  ANY  WAY OUT OF  THE USE OF THIS SOFTWARE,  EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://icozweb.com or contact us directly at support@icozweb.com
+ * for more information.
+ *
+ * @copyright  Copyright (c) 2017 IcozWeb (http://icozweb.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<strong><?php echo $this->escapeHtml($this->getMethod()->getTitle()) ?></strong>
+<?php $info = $this->getInfo(); ?>
+<?php if ($info && $additional = $info->getAdditionalInformation()): ?>
+    <br/>
+    <?php
+        $dataHelper         = Mage::helper('icozweb_payu');
+        $payUOrderId        = (isset($additional['payu_order_id'])) ? $this->escapeHtml($additional['payu_order_id']) : $dataHelper->__('Unknown');
+        $payUTransactionId  = (isset($additional['payu_transaction_id'])) ? $this->escapeHtml($additional['payu_transaction_id']) : $dataHelper->__('Unknown');
+        $bankSlipExpiration = (isset($additional['expiration'])) ? $additional['expiration'] : '';
+    ?>
+    <?php echo $dataHelper->__('PayU Order ID: %s', $payUOrderId); ?>
+    <br/>
+    <?php echo $dataHelper->__('PayU Transaction ID: %s', $payUTransactionId); ?>
+    <br/>
+    <?php echo $dataHelper->__('Bank Slip Expiration: %s', $bankSlipExpiration); ?>
+    <br/>
+    <?php if (isset($additional['boleto_url']) && $additional['boleto_url'] != ''): ?>
+    <a href="<?php echo $additional['boleto_url']; ?>" target="_blank" style="cursor: pointer;color: #ffffff;font-size: 20px;background: #A6C307;padding: 10px 20px 10px 20px;text-decoration: none;margin: 10px 0px 0px 0px;display: block;text-align: center;width: 165px;"><?php echo $dataHelper->__('Show Bank Slip'); ?></a>
+	<?php else: ?>
+	<?php echo $dataHelper->__('There was a problem retrieving the bank slip'); ?>
+	<?php endif; ?>
+    <br/>
+<?php endif; ?>

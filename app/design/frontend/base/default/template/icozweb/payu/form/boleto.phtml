@@ -1,0 +1,49 @@
+<?php
+/**
+ * IcozWeb
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to support@icozweb.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * THIS  SOFTWARE  IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES,
+ * INCLUDING,  BUT NOT LIMITED TO,  THE IMPLIED  WARRANTIES  OF MERCHANTABILITY
+ * AND FITNESS  FOR A  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * REGENTS OR  CONTRIBUTORS  BE LIABLE  FOR ANY  DIRECT,  INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;  LOSS OF USE, DATA, OR PROFITS;
+ * OR  BUSINESS  INTERRUPTION)  HOWEVER  CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER  IN CONTRACT,  STRICT LIABILITY,  OR TORT  (INCLUDING  NEGLIGENCE OR
+ * OTHERWISE)  ARISING  IN  ANY  WAY OUT OF  THE USE OF THIS SOFTWARE,  EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension for your
+ * needs please refer to http://icozweb.com or contact us directly at support@icozweb.com
+ * for more information.
+ *
+ * @copyright  Copyright (c) 2017 IcozWeb (http://icozweb.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php
+    /** @var IcozWeb_PayU_Block_Form_Boleto $this */
+    $_code = $this->getMethodCode();
+?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;padding-left:3%;">
+	<?php $helper = Mage::helper('icozweb_payu'); ?>
+    <li><?php echo $helper->__('The bank slip can be printed after placing your order.'); ?></li>
+    <li><?php echo $helper->__('The expiration date for the bank slip is %d business days.', $helper->getBoletoExpiration()); ?></li>
+    <li><?php echo $helper->__('The bank slip will not be sent to your phisical address, so you must print it or use its barcode in order to pay.'); ?></li>
+    <li>
+        <input id="<?php echo $_code ?>_device_session_id" type="hidden" class="required-entry" name="payment[payu_device_session_id]" value="<?php echo $this->getDeviceSessionId(); ?>" />
+    </li>
+</ul>
